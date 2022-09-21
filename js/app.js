@@ -40,7 +40,7 @@ let seattleLocation= {
       let liElem = document.createElement('li');
 
       liElem.textContent = `${dailyHours[i]}: ${this.cookieTotals[i]} cookies`;
-      
+
       ulElem.appendChild(liElem);
 };
 
