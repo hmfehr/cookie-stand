@@ -1,27 +1,27 @@
-'use strict';
+"use strict";
 
-let locationSection = document.getElementById('store-location');
+let locationTable = document.getElementById("store-location");
 
 let dailyHours = [
-  '6am',
-  '7am',
-  '8am',
-  '9am',
-  '10am',
-  '11am',
-  '12pm',
-  '1pm',
-  '2pm',
-  '3pm',
-  '4pm',
-  '5pm',
-  '6pm',
-  '7pm',
+  "6am",
+  "7am",
+  "8am",
+  "9am",
+  "10am",
+  "11am",
+  "12pm",
+  "1pm",
+  "2pm",
+  "3pm",
+  "4pm",
+  "5pm",
+  "6pm",
+  "7pm",
 ];
 
 let storeArr = [];
-let tableElm = document.createElementByID('table');
-customerNumber.appendChild(tableElm);
+let tableElm = document.createElement("table");
+locationTable.appendChild(tableElm);
 console.dir(dailyHours);
 
 function CookieStore(name, minCust, maxCust, avgSales) {
@@ -35,10 +35,8 @@ function CookieStore(name, minCust, maxCust, avgSales) {
   storeArr.push(this);
 }
 
-function getRandomCus(maxCrust,minCrust) {
-  return Math.round(
-    Math.random() * (maxCrust - minCrust + 1) + minCrust
-  );
+function getRandomCus(maxCrust, minCrust) {
+  return Math.round(Math.random() * (maxCrust - minCrust + 1) + minCrust);
 }
 
 CookieStore.prototype.caculateCustHour = function () {
@@ -57,47 +55,69 @@ CookieStore.prototype.avgCookie = function () {
     console.log(cookies);
   }
 };
-let Seattle = new CookieStore('Seattle', 23, 65, 6.5);
-let Dubai = new CookieStore('Dudai', 11, 38, 3.7);
-let Tokyo = new CookieStore('Tokyo', 3, 24, 1.2);
-let Paris = new CookieStore('Paris', 20, 38, 3.7);
-let Lima = new CookieStore('Lima', 2, 16, 4.6);
 
 CookieStore.prototype.getmin = function () {
   this.minCust = this.avgCookie;
 };
-CookieStore.prototype.render = function () {
-  this.avgCookie();
-  let articleElem = document.createElement('article');
-  locationSection.appendChild(articleElem);
+// DOM
+function tableHeader(){
+  let headerRow = document.createElement("tr");
+  locationTable.appendChild(headerRow);
 
-  let h2Elem = document.createElement('h2');
-  h2Elem.textContent = this.name;
-  articleElem.appendChild(h2Elem);
-
-  let ulElem = document.createElement('ul');
-  articleElem.appendChild(ulElem);
+  let space = document.createElement("th");
+  space.textContent = "";
+  headerRow.appendChild(space);
 
   for (let i = 0; i < dailyHours.length; i++) {
-    let liElem = document.createElement('li');
-    liElem.textContent = `${dailyHours[i]}: ${this.purchedCookie[i]} cookies`;
-    ulElem.appendChild(liElem);
+    let storeElem = document.createElement("th");
+    storeElem.textContent = dailyHours[i];
+    headerRow.appendChild(storeElem);
+  }
+}
+tableHeader();
+
+CookieStore.prototype.render = function () {
+
+
+  this.avgCookie();
+  let articleElem1 = document.createElement("tr");
+  locationTable.appendChild(articleElem1);
+
+  let tHelmement = document.createElement("td");
+  tHelmement.textContent = this.name;
+  articleElem1.appendChild(tHelmement);
+
+  for (let i = 0; i < dailyHours.length; i++) {
+    let tDelement = document.createElement("td");
+    tDelement.textContent = `${this.purchedCookie[i]}`;
+    articleElem1.appendChild(tDelement);
   }
 };
-//table dom
-CookieStore.prototype.render = function(){
-  let row1 = document.createElement('tr');
-  tableElm.appendChild(row1);
-  let td1 = document.createElement('td');
-  td1.textContent =this.name;
-  row1.appendChild(td1);
 
-  for(let i = 0; i < dailyHours.length; i++);
-  let td1Elm = document.createElement('td');
-  td1Elm.textContent = this.customerNumber[i];
-  row1.appendChild(td1Elm);
+function tableFooter (){
+  let footerRow = document.createElement("tr");
+  locationTable.appendChild(footerRow);
+
+  let space = document.createElement("th");
+  space.textContent = "";
+  footerRow.appendChild(space);
+
+  for(let i=0; i<dailyHours; i++){
+    for(let j=0; j< purchedCookie[i].length; j++){
+      total+= storeArr[j][i];
+    }
+  }
 }
-//renders calls
+tableFooter();
+
+let Seattle = new CookieStore("Seattle", 23, 65, 6.5);
+let Dubai = new CookieStore("Dudai", 11, 38, 3.7);
+let Tokyo = new CookieStore("Tokyo", 3, 24, 1.2);
+let Paris = new CookieStore("Paris", 20, 38, 3.7);
+let Lima = new CookieStore("Lima", 2, 16, 4.6);
+
+//renders calls\
+
 Seattle.render();
 Dubai.render();
 Tokyo.render();
