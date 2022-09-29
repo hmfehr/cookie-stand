@@ -1,5 +1,7 @@
 *{
-  font-family: ;
+  font-family: "Helvetica", sans-serif;
+  color: white;
+  background-color: black;
 }
 
 body {
@@ -12,11 +14,51 @@ body {
 
 h1 {
   text-align: center;
-  color: ;
+  color: red;
 }
 
 td {
-  background-color: ;
-  padding-top: ;
+  background-color: yellow;
+  color: blueviolet;
+  padding-top: 25px;
  border: 5px; 
 }
+
+th {
+  background-color: red;
+  color: blueviolet;
+  padding-top: 25px;
+ border: 5px;
+}
+#seattle {
+  text-align: center;
+  list-style-type: none;
+  }
+
+#seattle h2 {
+  
+  color: blue;
+}
+
+#seattle li {
+  color: blue;
+  text-decoration: none;
+}
+
+#tokyo {
+  text-align: center;
+  list-style-type: none;
+  }
+
+#seattle h2 {
+  
+  color: blue;
+}
+
+#seattle li {
+  color: blue;
+  text-decoration: none;
+}
+
+
+

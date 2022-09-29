@@ -18,7 +18,10 @@ let dailyHours = [
   "6pm",
   "7pm",
 ];
-let tableElm = document.getElementById("store-location");
+let tableElm= document.getElementById("store-location");
+let formElement= document.getElementById("addStore");
+let tableFooter= document.createElement("tableFooter");
+//let tableElm = document.getElementById("store-location");
 // let storeArr = [];
 // let tableElm = document.createElement("table");
 // locationTable.appendChild(tableElm);
@@ -98,7 +101,7 @@ function tableHeader() {
   tableElm.appendChild(tableRow);
 }
 
-function tableFooter() {
+function renderTableFooter() {
   let tableRow = document.createElement("tr");
   let tableHeader = document.createElement("th");
   tableHeader.textContent = "Grand Total";
@@ -116,17 +119,41 @@ function tableFooter() {
   }
   tableHeader = document.createElement("th");
   tableHeader.textContent = grandTotal;
+  tableFooter.appendChild(tableRow);
   tableRow.appendChild(tableHeader);
-  tableElm.appendChild(tableRow);
+  tableElm.appendChild(tableFooter);
 }
 
-(function renderTable() {
-  tableHeader();
-  for (let i = 0; i < CookieStore.all.length; i++) {
-    CookieStore.all[i].render();
-  }
-  tableFooter();
-})();
+function handleForm(e) {
+  e.preventDefault();
+  const name = e.target.name.value;
+
+  const minCust =parseInt(e.target.minCust.value);
+  const maxCust = parseInt(e.target.maxCust.value);
+  const avgSales = parseInt(e.target.avgSales.value);
+
+  const CookieStore = new CookieStore(name, minCust, maxCust, avgSales);
+
+  e.target.name.value = null;
+  e.target.minCust.value = null;
+  e.target.maxCust.value = null;
+  e.target.avgSales.value = null;
+
+  renderTableFooter.innerHTML = "";
+
+  renderTableFooter();
+}
+tableHeader();
+renderTableFooter();
+formElement.addEventListener("submit", handleForm);
+
+// (function renderTable() {
+//   tableHeader();
+//   for (let i = 0; i < CookieStore.all.length; i++) {
+//     CookieStore.all[i].render();
+//   }
+//   tableFooter();
+// })();
 
 
 
