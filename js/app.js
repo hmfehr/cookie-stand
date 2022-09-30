@@ -143,17 +143,18 @@ function handleForm(e) {
 
   renderTableFooter();
 }
-tableHeader();
-renderTableFooter();
-formElement.addEventListener("submit", handleForm);
 
-// (function renderTable() {
-//   tableHeader();
-//   for (let i = 0; i < CookieStore.all.length; i++) {
-//     CookieStore.all[i].render();
-//   }
-//   tableFooter();
-// })();
+
+
+formElement.addEventListener("click", handleForm);
+
+(function renderTable() {
+  tableHeader();
+  for (let i = 0; i < CookieStore.all.length; i++) {
+    CookieStore.all[i].render();
+  }
+  renderTableFooter();
+})();
 
 
 
